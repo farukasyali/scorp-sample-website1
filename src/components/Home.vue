@@ -13,10 +13,14 @@
 
 <script>
   
+  import { eventBus } from "../main";
 
   export default {
     components:{
       
+    },
+    mounted(){
+      eventBus.$emit("pageChanged", "Home");
     }
   } 
 </script>

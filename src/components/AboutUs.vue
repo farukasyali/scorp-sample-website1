@@ -10,5 +10,10 @@
 </template>
 
 <script>
-    export default {}
+    import { eventBus } from "../main";
+    export default {
+        mounted(){
+            eventBus.$emit("pageChanged", "About Us");
+        }
+    }
 </script>

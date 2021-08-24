@@ -3,7 +3,6 @@
     <app-header></app-header>
     <div class="container">
       <main role="main" class="pb-3">
-        
         <router-view></router-view>
       </main>
     </div>
@@ -14,8 +13,8 @@
 <script>
 
   
-  import Header from "./components/Header";
-  import Footer from "./components/Footer";
+  import Header from "./components/shared/Header";
+  import Footer from "./components/shared/Footer";
 
   export default {
     
