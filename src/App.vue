@@ -21,7 +21,12 @@
   import LoginModal from "./components/LoginModal.vue";
 
   export default {
-    
+    data(){
+      return {
+        loggedUser:{},
+      }
+    },
+
     components: {
       appHeader: Header,
       appFooter: Footer,

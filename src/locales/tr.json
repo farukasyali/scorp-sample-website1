@@ -11,8 +11,20 @@
     "password-label": "Şifre",
     "language-label": "Dil ",
     "home-page-label": "Sample-tr",
-    "contact-page-label": "İletişim",
-    "homepage-welcome": "Sample Websitesi'ne Hoşgeldiniz",
-    "homepage-welcome-text": "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız, metin aralarına utandırıcı sözcükler gizlenmediğinden emin olmanız gerekir. İnternet'teki tüm Lorem Ipsum üreteçleri önceden belirlenmiş metin bloklarını yineler. Bu da, bu üreteci İnternet üzerindeki gerçek Lorem Ipsum üreteci yapar. Bu üreteç, 200'den fazla Latince sözcük ve onlara ait cümle yapılarını içeren bir sözlük kullanır. Bu nedenle, üretilen Lorem Ipsum metinleri yinelemelerden, mizahtan ve karakteristik olmayan sözcüklerden uzaktır."
+    "contact-page-label" : "İletişim",
+    "phone-number-label" : "Telefon Numarası",
+    "country-label" : "Ülke",
+    "text-label" : "Metin",
+    "homepage-welcome" : "Sample Websitesi'ne Hoşgeldiniz",
+    "homepage-welcome-text" : "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız, metin aralarına utandırıcı sözcükler gizlenmediğinden emin olmanız gerekir. İnternet'teki tüm Lorem Ipsum üreteçleri önceden belirlenmiş metin bloklarını yineler. Bu da, bu üreteci İnternet üzerindeki gerçek Lorem Ipsum üreteci yapar. Bu üreteç, 200'den fazla Latince sözcük ve onlara ait cümle yapılarını içeren bir sözlük kullanır. Bu nedenle, üretilen Lorem Ipsum metinleri yinelemelerden, mizahtan ve karakteristik olmayan sözcüklerden uzaktır.",
+    "Turkey": "Türkiye",
+    "Usa": "Amerika Birleşik Devletleri",
+    "UK": "İngiltere",
+    "Germany": "Almanya",
+    "Sweden": "İsvç",
+    "Kenya": "Kenya",
+    "Brazil": "Brezilya",
+    "Zimbabwe" : "Zimbabve",
+    "send-btn-label" : "Gönder"
    
 }

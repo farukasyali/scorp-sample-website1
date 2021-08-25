@@ -65,7 +65,9 @@
         loginUser(e){
             e.preventDefault();
             eventBus.$emit("userLoggedin", this.user);
+            eventBus.$emit("userInfoChanged", this.user);
             document.getElementById('login-modal-close-btn').click();
+            this.$parent.$data.loggedUser = Object.assign({}, this.user);
             this.user = {};
 
         }

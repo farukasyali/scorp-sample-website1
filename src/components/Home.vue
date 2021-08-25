@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pt-3">
   
     <h1>{{ $t('homepage-welcome') }}</h1>
     <div class="row">
