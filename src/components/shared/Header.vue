@@ -18,22 +18,48 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
 
-                                <router-link tag="li" to="/" active-class="active" class="nav-item">
-                                    <a class="nav-link ">Home</a>
+                                <router-link tag="li" to="/" active-class="active" class="nav-item ">
+                                    <a class="nav-link text-primary fw-bold">Home</a>
                                 </router-link>
                                 
-                                 <router-link tag="li" to="/about-us" active-class="active" class="nav-item">
-                                    <a class="nav-link ">About Us</a>
+                                <router-link tag="li" to="/contact-us" active-class="active" class="nav-item ">
+                                    <a class="nav-link text-primary fw-bold">Contact Us</a>
                                 </router-link>
 
-                                <router-link tag="li" to="/contact-us" active-class="active" class="nav-item">
-                                    <a class="nav-link ">Contact Us</a>
-                                </router-link>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{selectedLang.title}}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><button class="dropdown-item" v-on:click="changeLang('en')" >English</button></li>
+                                        <li><button class="dropdown-item" v-on:click="changeLang('tr')">Turkish</button></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button class="btn btn-outline-primary" type="button" 
+                                    v-on:click="openLoginModal"
+                                    v-if="checkIfLoggedin() == false">
+                                        Login
+                                    </button>
+                                </li>
+
+                                <li class="nav-item dropdown" v-if="checkIfLoggedin()">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <span class="text-success text-dark">Ömer Faruk Asyalıoğlu</span>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><div class="dropdown-item" >farukasyali@gmail.com</div></li>
+                                        <li><button class="dropdown-item text-primary fw-bold" v-on:click="logOut">Logout</button></li>
+                                    </ul>
+                                </li>
 
                         </ul>
+                    </div>
                     </div>
                 </div>
             </nav>
@@ -44,17 +70,60 @@
 <script>
     
     import  {eventBus}  from "../../main";
+
     export default {
         data(){
             return{
                 pageName: "Home",
+                loggedUser: {},
+                selectedLang: { code: "en", title: "English"},
             }
         },
 
+        methods: {
+            openLoginModal()
+            {
+                document.getElementById('login-modal-btn').click();
+            },
+
+            changeLang(code){
+                if(code == "en")
+                    this.selectedLang = { code: "en", title: "English"};
+                else
+                    this.selectedLang = { code: "tr", title: "Türkçe"};
+            },
+
+            checkIfLoggedin(){
+                if(Object.entries(this.loggedUser).length == 0)
+                    return false;
+                else
+                    return true;
+
+            },
+
+            logOut() {
+                this.loggedUser = {};
+
+            },
+
+
+        },
+        
         created(){
             eventBus.$on("pageChanged", (name) => {
                 this.pageName = name;
+            }),
+
+            eventBus.$on("userLoggedin", (user) => {
+                this.loggedUser = user;
+
+                if(user.language == "en")
+                    this.selectedLang = { code: "en", title: "English"};
+                else
+                    this.selectedLang = { code: "tr", title: "Türkçe"};
             })
-        }
+            
+        },
+
     }
 </script>
