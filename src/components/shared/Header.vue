@@ -12,7 +12,7 @@
                         <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 20.746094 15 C 19.78125 15 19 15.785156 19 16.75 C 19 17.714844 19.78125 18.5 20.746094 18.5 C 21.710938 18.5 22.496094 17.714844 22.496094 16.75 C 22.496094 15.785156 21.710938 15 20.746094 15 Z M 20.746094 15 "/>
                         </g>
                         </svg>
-                        {{pageName}}
+                        {{ pageName }}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -23,20 +23,20 @@
                             <ul class="navbar-nav flex-grow-1">
 
                                 <router-link tag="li" to="/" active-class="active" class="nav-item ">
-                                    <a class="nav-link text-primary fw-bold">Home</a>
+                                    <a class="nav-link text-primary fw-bold">{{ $t('home-menu-label') }} </a>
                                 </router-link>
                                 
                                 <router-link tag="li" to="/contact-us" active-class="active" class="nav-item ">
-                                    <a class="nav-link text-primary fw-bold">Contact Us</a>
+                                    <a class="nav-link text-primary fw-bold">{{ $t('contact-menu-label') }}</a>
                                 </router-link>
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{selectedLang.title}}
+                                        {{selectedLang.title}} 
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li><button class="dropdown-item" v-on:click="changeLang('en')" >English</button></li>
-                                        <li><button class="dropdown-item" v-on:click="changeLang('tr')">Turkish</button></li>
+                                        <li><button class="dropdown-item" v-on:click="changeLang('en')" >{{ $t('english') }}</button></li>
+                                        <li><button class="dropdown-item" v-on:click="changeLang('tr')">{{ $t('turkish') }}</button></li>
                                     </ul>
                                 </li>
 
@@ -44,17 +44,17 @@
                                     <button class="btn btn-outline-primary" type="button" 
                                     v-on:click="openLoginModal"
                                     v-if="checkIfLoggedin() == false">
-                                        Login
+                                        {{ $t('login-btn-label') }}
                                     </button>
                                 </li>
 
                                 <li class="nav-item dropdown" v-if="checkIfLoggedin()">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                      <span class="text-success text-dark">Ömer Faruk Asyalıoğlu</span>
+                                      <span class="text-success text-dark">{{loggedUser.name}}</span>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li><div class="dropdown-item" >farukasyali@gmail.com</div></li>
-                                        <li><button class="dropdown-item text-primary fw-bold" v-on:click="logOut">Logout</button></li>
+                                        <li><div class="dropdown-item" >{{loggedUser.email}}</div></li>
+                                        <li><button class="dropdown-item text-primary fw-bold" v-on:click="logOut">{{ $t('logout-btn-label') }}</button></li>
                                     </ul>
                                 </li>
 
@@ -74,7 +74,8 @@
     export default {
         data(){
             return{
-                pageName: "Home",
+                pageName: this.$t("home-page-label"),
+                pageNameParam : "home",
                 loggedUser: {},
                 selectedLang: { code: "en", title: "English"},
             }
@@ -88,9 +89,17 @@
 
             changeLang(code){
                 if(code == "en")
+                {
+                    this.$i18n.locale = 'en';
                     this.selectedLang = { code: "en", title: "English"};
+                }
                 else
+                {
+                    this.$i18n.locale = 'tr';
                     this.selectedLang = { code: "tr", title: "Türkçe"};
+
+                }
+
             },
 
             checkIfLoggedin(){
@@ -106,24 +115,51 @@
 
             },
 
+            changePageTitle(){
+                if(this.pageNameParam === "home")
+                    this.pageName = this.$t("home-page-label");
+                else
+                     this.pageName = this.$t("contact-page-label");
+            }
 
         },
         
         created(){
+            
             eventBus.$on("pageChanged", (name) => {
-                this.pageName = name;
+                this.pageNameParam = name;
             }),
 
             eventBus.$on("userLoggedin", (user) => {
                 this.loggedUser = user;
 
                 if(user.language == "en")
+                {
+                    this.$i18n.locale = 'en';
                     this.selectedLang = { code: "en", title: "English"};
-                else
+                }
+                else{
+                    this.$i18n.locale = 'tr';
                     this.selectedLang = { code: "tr", title: "Türkçe"};
+                }
             })
             
         },
+
+        computed:{
+           
+        },
+
+        watch: {
+            pageNameParam(){
+                this.changePageTitle();
+            },
+
+            selectedLang(){
+                this.changePageTitle();
+
+            }
+        }
 
     }
 </script>

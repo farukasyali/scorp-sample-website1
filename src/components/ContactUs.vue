@@ -13,7 +13,7 @@
     import { eventBus } from "../main";
     export default {
         mounted(){
-            eventBus.$emit("pageChanged", "Contact Us");
+            eventBus.$emit("pageChanged", 'contact');
         }
     }
 </script>
