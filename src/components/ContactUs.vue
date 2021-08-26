@@ -94,7 +94,6 @@
                 e.preventDefault();
                 let json = JSON.stringify(Object.assign({}, this.contact))
                 console.log(json);
-                console.log(json);
                 this.contact = {country_code: "TR"};
             }
 
